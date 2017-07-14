@@ -1,6 +1,17 @@
-function sketch(){
-
+var w;
+function setup(){
+	createCanvas(640, 360);
+	w = new Walker();
 }
 function draw(){
-	ellipse(50, 50, 50, 80);
+	background(51);
+	w.display();
+}
+function Walker(){
+	this.x = width/2;
+	this.y = height/2;
+	this.display = function(){
+		fill(255);
+		ellipse(this.x, this.y, 48, 48);
+	}
 }
