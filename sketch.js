@@ -9,14 +9,16 @@ function draw(){
 	w.walk();
 }
 function Walker(){
-	this.x = width/2;
-	this.y = height/2;
-	this.walk  = function(){
-		this.x = this.x + random(-13,13);
-		this.y = this.y + random(-13,13);
-	}
+	this.post = createVector(width/2, height/2);
+	// this.x = width/2;
+	// this.y = height/2;
+	
+	 this.walk  = function(){
+	 	this.post.x = this.post.x + random(-13,13);
+	 	this.post.y = this.post.y + random(-13,13);
+	 }
 	this.display = function(){
 		fill(255);
-		ellipse(this.x, this.y, 48, 48);
+		ellipse(this.post.x, this.post.y, 48, 48);
 	}
 }
