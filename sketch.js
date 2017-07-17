@@ -1,24 +1,22 @@
 var w;
 function setup(){
-	createCanvas(640, 360);
+	createCanvas(1080, 1920);
 	w = new Walker();
 }
 function draw(){
 	background(51);
 	w.update();
-
 	w.display();
 }
 function Walker(){
-	this.post = createVector(width/2, 0);
+	this.post = createVector(width/2, height/2);
 	this.vel = createVector(0,0);
-	this.acc = createVector(0,0.1);
-	 
-
-	// this.x = width/2;
-	// this.y = height/2;
 	
 	 this.update  = function(){
+	 	var mouse = createVector(mouseX, mouseY);
+	 	this.acc = p5.Vector.sub(mouse, this.post);
+	 	this.acc.normalize();
+	 	this.acc.mult(1);
 	 	this.vel.add(this.acc);
 	 	this.post.add(this.vel);
 	 	}
