@@ -11,12 +11,14 @@ function draw(){
 function Walker(){
 	this.post = createVector(width/2, height/2);
 	this.vel = createVector(0,0);
-	
+	this.acc = p5.Vector.fromAngle(random(TWO_PI));
 	 this.update  = function(){
 	 	var mouse = createVector(mouseX, mouseY);
-	 	this.acc = p5.Vector.sub(mouse, this.post);
-	 	this.acc.normalize();
-	 	this.acc.mult(1);
+	 	//this.acc = p5.Vector.sub(mouse, this.post);
+	 	
+	 	// this.acc.normalize();
+	 	// this.acc.mult(1);
+	 	this.acc.setMag(0.4);
 	 	this.vel.add(this.acc);
 	 	this.post.add(this.vel);
 	 	}
