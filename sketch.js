@@ -5,7 +5,9 @@ function setup(){
 }
 function draw(){
 	background(51);
-	p.putForce(createVector(random(-1,1),0.1));
+	var wind = createVector(0.5, 0);
+	p.putForce(createVector(0, 0.2));
+	p.putForce(wind);
 	p.update();
 	p.edges();
 	p.display();
