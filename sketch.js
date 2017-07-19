@@ -5,8 +5,9 @@ function setup(){
 }
 function draw(){
 	background(51);
-	p.putForce(createVector(0,0.1));
+	p.putForce(createVector(random(-1,1),0.1));
 	p.update();
+	p.edges();
 	p.display();
 	
 }
@@ -44,5 +45,11 @@ function Particle(){
 	this.display = function(){
 		fill(255);
 		ellipse(this.pos.x, this.pos.y, 48, 48);
+	}
+	this.edges = function(){
+		if(this.pos.y > height){
+			this.vel.y *= -1;
+			this.pos.y = height;
+		}
 	}
 }
