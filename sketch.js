@@ -54,5 +54,9 @@ function Particle(){
 			this.vel.y *= -1;
 			this.pos.y = height;
 		}
+		if(this.pos.x > width){
+			this.vel.x *= -1;
+			this.pos.x = width;
+		}
 	}
 }
