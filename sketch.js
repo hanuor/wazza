@@ -57,6 +57,8 @@ function Particle(x, y, m){
 		this.vel.add(this.acc);
 		this.pos.add(this.vel);
 		this.acc.set(0, 0);
+
+		this.vel.mult(0.96);
 	}
 	this.putForce = function(force){
 		var f = force.copy();
