@@ -2,13 +2,14 @@ var p;
 var p2;
 function setup(){
 	createCanvas(640, 360);
-	p = new Particle(200, 100);
-	p2 = new Particle(400, 200);
+	p = new Particle(200, 100, 3);
+	p2 = new Particle(400, 200, 1);
 }
 function draw(){
 	background(51);
 	var wind = createVector(0.5, 0);
-	p.putForce(createVector(0, 0.2));	
+	p.putForce(createVector(0, 0.2 * p.mass));	
+	p2.putForce(createVector(0, 0.2 * p2.mass));	
 	if(mouseIsPressed){
 	p.putForce(wind);
 
@@ -17,7 +18,7 @@ function draw(){
 	p.edges();
 	p.display();
 
-	p2.putForce(createVector(0, 0.2));	
+	
 	if(mouseIsPressed){
 	p2.putForce(wind);
 
@@ -46,10 +47,11 @@ function draw(){
 // 	// 	ellipse(this.post.x, this.post.y, 48, 48);
 // 	// }
 // }
-function Particle(x, y){
+function Particle(x, y, m){
 	this.pos = createVector(x, y);
 	this.vel = createVector(0,0);
 	this.acc = createVector(0,0);
+	this.mass = m;
 	
 	this.update = function(){
 		this.vel.add(this.acc);
@@ -57,11 +59,13 @@ function Particle(x, y){
 		this.acc.set(0, 0);
 	}
 	this.putForce = function(force){
-		this.acc.add(force);
+		var f = force.copy();
+		f.div(this.mass);
+		this.acc.add(f);
 	}
 	this.display = function(){
 		fill(255);
-		ellipse(this.pos.x, this.pos.y, 48, 48);
+		ellipse(this.pos.x, this.pos.y, this.mass * 10, this.mass * 10);
 	}
 	this.edges = function(){
 		if(this.pos.y > height){
