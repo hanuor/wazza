@@ -40,9 +40,10 @@ function Particle(){
 	this.update = function(){
 		this.vel.add(this.acc);
 		this.pos.add(this.vel);
+		this.acc.set(0, 0);
 	}
 	this.putForce = function(force){
-		this.acc = force;
+		this.acc.add(force);
 	}
 	this.display = function(){
 		fill(255);
