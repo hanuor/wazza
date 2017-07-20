@@ -1,23 +1,37 @@
 var p;
+var p2;
 function setup(){
-	createCanvas(640, 320);
-	p = new Particle();
+	createCanvas(640, 360);
+	p = new Particle(200, 100);
+	p2 = new Particle(400, 200);
 }
 function draw(){
 	background(51);
 	var wind = createVector(0.5, 0);
-	p.putForce(createVector(0, 0.2));
+	p.putForce(createVector(0, 0.2));	
+	if(mouseIsPressed){
 	p.putForce(wind);
+
+	}
 	p.update();
 	p.edges();
 	p.display();
+
+	p2.putForce(createVector(0, 0.2));	
+	if(mouseIsPressed){
+	p2.putForce(wind);
+
+	}
+	p2.update();
+	p2.edges();
+	p2.display();
 	
 }
 // function Walker(){
 // 	// this.post = createVector(width/2, height/2);
 // 	// this.vel = createVector(0,0);
 // 	// this.acc = p5.Vector.fromAngle(random(TWO_PI));
-// 	//  this.update  = function(){
+// 	//  this.update  = function(){	
 // 	//  	var mouse = createVector(mouseX, mouseY);
 // 	//  	//this.acc = p5.Vector.sub(mouse, this.post);
 	 	
@@ -32,8 +46,8 @@ function draw(){
 // 	// 	ellipse(this.post.x, this.post.y, 48, 48);
 // 	// }
 // }
-function Particle(){
-	this.pos = createVector(width/2, height/2);
+function Particle(x, y){
+	this.pos = createVector(x, y);
 	this.vel = createVector(0,0);
 	this.acc = createVector(0,0);
 	
@@ -58,5 +72,6 @@ function Particle(){
 			this.vel.x *= -1;
 			this.pos.x = width;
 		}
+
 	}
 }
