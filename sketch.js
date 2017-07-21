@@ -30,7 +30,16 @@ this.applyForce = function(force){
 }
 this.seek = function(target){
 	var desired = p5.Vector.sub(target, this.pos);
-	desired.setMag(this.maxspeed);
+	//desired.setMag(this.maxspeed);
+
+	var d = desired.mag();
+	if(d < 100){
+		var m = map(d, 0, 100, 0, this.maxspeed);
+		desired.setMag(m);
+	}else{
+		desired.setMag(this.maxspeed);
+	}
+
 	var steering = p5.Vector.sub(desired, this.vel);
 	steering.limit(this.maxforce);
 	this.applyForce(steering);
