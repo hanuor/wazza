@@ -8,19 +8,32 @@ function setup(){
 
 function draw(){
 	background(51);
+
+	var target = createVector(mouseX, mouseY);
+	vehicle.seek(target);
 	vehicle.update();
 	vehicle.display();
+
+
 }
 
 function Vehicle(x, y, m){
 	this.pos = createVector(x,y);
 	this.vel = createVector(0,0);
 	this.acc = createVector(0,0);
+	this.maxspeed = 5;
 
 this.applyForce = function(force){
 	
 	this.acc.add(force);
 }
+this.seek = function(target){
+	var desired = p5.Vector.sub(target, this.pos);
+	desired.setMag(this.maxspeed);
+	var steering = p5.Vector.sub(desired, this.vel);
+	this.applyForce(steering);
+}
+
 this.update = function(){
 	this.vel.add(this.acc);
 	this.pos.add(this.vel);
