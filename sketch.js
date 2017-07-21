@@ -22,6 +22,7 @@ function Vehicle(x, y, m){
 	this.vel = createVector(0,0);
 	this.acc = createVector(0,0);
 	this.maxspeed = 5;
+	this.maxforce = 0.2;
 
 this.applyForce = function(force){
 	
@@ -31,12 +32,14 @@ this.seek = function(target){
 	var desired = p5.Vector.sub(target, this.pos);
 	desired.setMag(this.maxspeed);
 	var steering = p5.Vector.sub(desired, this.vel);
+	steering.limit(this.maxforce);
 	this.applyForce(steering);
 }
 
 this.update = function(){
 	this.vel.add(this.acc);
 	this.pos.add(this.vel);
+	this.vel.limit(this.maxspeed);
 	this.acc.set(0,0);
 }
 
