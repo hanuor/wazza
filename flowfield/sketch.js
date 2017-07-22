@@ -1,7 +1,4 @@
-// Daniel Shiffman
-// https://www.kadenze.com/courses/the-nature-of-code
-// http://natureofcode.com/
-// Session 3: Flow Field Following
+
 
 // Via Reynolds: http://www.red3d.com/cwr/steer/FlowFollow.html
 

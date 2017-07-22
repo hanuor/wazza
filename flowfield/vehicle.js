@@ -1,7 +1,3 @@
-// Daniel Shiffman
-// https://www.kadenze.com/courses/the-nature-of-code
-// http://natureofcode.com/
-// Session 3: Flow Field Following
 
 // The "Vehicle" constructor
 
