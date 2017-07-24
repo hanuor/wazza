@@ -1,19 +1,43 @@
-function setup(){
-	createCanvas(640, 360);
+var angle;
+
+function setup() {
+  createCanvas(640, 360);
 }
 
-function draw(){
-	background(51);
-	stroke(255);
-	noFill();
+function draw() {
+  background(51);
+  // Let's pick an angle 0 to 90 degrees based on the mouse position
+  //angle = map(mouseX, 0, width, 0, PI / 2);
 
-	drawCircle(width/2, height/2, 300);
+  // Start the tree from the bottom of the screen
+  translate(width / 2, height);
+  stroke(255);
+  branch(120, 1);
+  
 }
 
-function drawCircle(x, y, d){
-	ellipse(x, y, d, d);
-	if(d>10){
-	drawCircle(x, y, d/2);
-	drawCircle(x + d/2, y, d/2);
-	}
-}	
+function branch(len, generation) {
+  // Draw the branch
+  strokeWeight(map(generation, 1, 10, 4, 1));
+  line(0, 0, 0, -len);
+
+  // Move to the end and shrink.
+  translate(0, -len);
+  len *= 0.66;
+  
+  generation++;
+  
+  if (len > 2) {
+  	angle = random(-PI/4, PI/4);
+  	var nn  = floor(random(1, 4));
+    for(var i = 0; i< nn; i++){
+    push();
+    rotate(angle);
+    branch(len, generation);
+    pop();
+	
+    }
+    
+    // Repeat the same thing, only branch off to the "left" this time!
+  }
+}
