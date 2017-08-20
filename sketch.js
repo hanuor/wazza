@@ -28,7 +28,7 @@ function branch(len, generation) {
   generation++;
   
   if (len > 2) {
-  	angle = random(-PI/4, PI/4);
+    angle = random(-PI/4, PI/4);
   	var nn  = floor(random(1, 4));
     for(var i = 0; i< nn; i++){
     push();
